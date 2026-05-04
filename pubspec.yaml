@@ -1,0 +1,29 @@
+name: suorotsav_2026
+description: "Manthan 2026 — College Tech Fest Website"
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.11.4
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+  google_fonts: ^6.2.1
+  visibility_detector: ^0.4.0+2
+  url_launcher: ^6.3.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/soumit.png
+    - assets/sayantani.png
+    - assets/logo/
+    - assets/events/
