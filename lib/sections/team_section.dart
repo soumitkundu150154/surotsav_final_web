@@ -25,8 +25,7 @@ class TeamSection extends StatelessWidget {
           const ScrollReveal(
             child: SectionTitle(
               title: 'Built By',
-              subtitle:
-                  'The developers behind the Manthan 2026 website.',
+              subtitle: 'The developers behind the Manthan 2026 website.',
             ),
           ),
           const SizedBox(height: 60),
@@ -64,7 +63,7 @@ class _TeamCardState extends State<_TeamCard> {
       AppColors.primary,
       AppColors.accent,
       AppColors.accentWarm,
-      AppColors.accentPink,
+      const Color.fromARGB(255, 29, 15, 226),
       const Color(0xFF10B981),
       const Color(0xFF8B5CF6),
     ];
@@ -74,7 +73,8 @@ class _TeamCardState extends State<_TeamCard> {
   @override
   Widget build(BuildContext context) {
     final color = _avatarColor(widget.member.name);
-    final hasImage = widget.member.imageAsset != null &&
+    final hasImage =
+        widget.member.imageAsset != null &&
         widget.member.imageAsset!.isNotEmpty;
 
     return SizedBox(
@@ -137,8 +137,7 @@ class _TeamCardState extends State<_TeamCard> {
             ),
             const SizedBox(height: 6),
             Container(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
               decoration: BoxDecoration(
                 color: color.withValues(alpha: 0.12),
                 borderRadius: BorderRadius.circular(12),
@@ -146,16 +145,17 @@ class _TeamCardState extends State<_TeamCard> {
               child: Text(
                 widget.member.role,
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: color,
-                      fontWeight: FontWeight.w600,
-                    ),
+                  color: color,
+                  fontWeight: FontWeight.w600,
+                ),
                 textAlign: TextAlign.center,
               ),
             ),
             const SizedBox(height: 20),
 
             // View Profile button
-            if (widget.member.portfolioUrl != null && widget.member.portfolioUrl!.isNotEmpty)
+            if (widget.member.portfolioUrl != null &&
+                widget.member.portfolioUrl!.isNotEmpty)
               _ViewProfileButton(
                 color: color,
                 memberName: widget.member.name,
@@ -172,6 +172,7 @@ class _TeamCardState extends State<_TeamCard> {
     );
   }
 }
+
 class _ViewProfileButton extends StatefulWidget {
   final Color color;
   final String memberName;
@@ -200,8 +201,7 @@ class _ViewProfileButtonState extends State<_ViewProfileButton> {
         onTap: widget.onTap,
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 200),
-          padding:
-              const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           decoration: BoxDecoration(
             color: _hovered
                 ? widget.color.withValues(alpha: 0.15)
@@ -214,11 +214,7 @@ class _ViewProfileButtonState extends State<_ViewProfileButton> {
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Icon(
-                Icons.person_outline,
-                size: 16,
-                color: widget.color,
-              ),
+              Icon(Icons.person_outline, size: 16, color: widget.color),
               const SizedBox(width: 8),
               Text(
                 'View Profile',
