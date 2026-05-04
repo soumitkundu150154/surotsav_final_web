@@ -8,7 +8,9 @@ import '../widgets/glow_card.dart';
 
 /// Registration section with clear Internal vs External student paths
 class RegistrationSection extends StatefulWidget {
-  const RegistrationSection({super.key});
+  final VoidCallback? onExploreEvents;
+
+  const RegistrationSection({super.key, this.onExploreEvents});
 
   @override
   State<RegistrationSection> createState() => _RegistrationSectionState();
@@ -358,34 +360,40 @@ class _RegistrationSectionState extends State<RegistrationSection> {
 
               // Visual hint to scroll up to events
               Center(
-                child: Container(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 24, vertical: 14),
-                  decoration: BoxDecoration(
-                    color: AppColors.accent.withValues(alpha: 0.08),
-                    borderRadius: BorderRadius.circular(14),
-                    border: Border.all(
-                      color: AppColors.accent.withValues(alpha: 0.2),
-                    ),
-                  ),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Icon(
-                        Icons.arrow_upward_rounded,
-                        size: 18,
-                        color: AppColors.accent,
-                      ),
-                      const SizedBox(width: 10),
-                      Text(
-                        'Scroll up to explore events',
-                        style: TextStyle(
-                          color: AppColors.accent,
-                          fontSize: 13,
-                          fontWeight: FontWeight.w600,
+                child: MouseRegion(
+                  cursor: SystemMouseCursors.click,
+                  child: GestureDetector(
+                    onTap: widget.onExploreEvents,
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 24, vertical: 14),
+                      decoration: BoxDecoration(
+                        color: AppColors.accent.withValues(alpha: 0.08),
+                        borderRadius: BorderRadius.circular(14),
+                        border: Border.all(
+                          color: AppColors.accent.withValues(alpha: 0.2),
                         ),
                       ),
-                    ],
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(
+                            Icons.arrow_upward_rounded,
+                            size: 18,
+                            color: AppColors.accent,
+                          ),
+                          const SizedBox(width: 10),
+                          Text(
+                            'Scroll up to explore events',
+                            style: TextStyle(
+                              color: AppColors.accent,
+                              fontSize: 13,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
                 ),
               ),

@@ -23,9 +23,7 @@ class FooterSection extends StatelessWidget {
       decoration: BoxDecoration(
         color: AppColors.surface,
         border: Border(
-          top: BorderSide(
-            color: AppColors.primary.withValues(alpha: 0.1),
-          ),
+          top: BorderSide(color: AppColors.primary.withValues(alpha: 0.1)),
         ),
       ),
       child: Padding(
@@ -67,10 +65,10 @@ class FooterSection extends StatelessWidget {
             ),
             const SizedBox(height: 8),
             Text(
-              'Made with ❤️ by the Surotsav Team',
-              style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: AppColors.textMuted,
-                  ),
+              'Made with ❤️ Soumit Kundu © ',
+              style: Theme.of(
+                context,
+              ).textTheme.bodySmall?.copyWith(color: AppColors.textMuted),
               textAlign: TextAlign.center,
             ),
           ],
@@ -94,9 +92,9 @@ class FooterSection extends StatelessWidget {
             const SizedBox(width: 12),
             Text(
               'SUROTSAV \'26',
-              style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                    letterSpacing: 2,
-                  ),
+              style: Theme.of(
+                context,
+              ).textTheme.titleLarge?.copyWith(letterSpacing: 2),
             ),
           ],
         ),
@@ -118,9 +116,9 @@ class FooterSection extends StatelessWidget {
       children: [
         Text(
           'QUICK LINKS',
-          style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                color: AppColors.textSecondary,
-              ),
+          style: Theme.of(
+            context,
+          ).textTheme.labelMedium?.copyWith(color: AppColors.textSecondary),
         ),
         const SizedBox(height: 16),
         _FooterLink(label: 'About', onTap: onAboutTap),
@@ -136,9 +134,9 @@ class FooterSection extends StatelessWidget {
       children: [
         Text(
           'CONNECT',
-          style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                color: AppColors.textSecondary,
-              ),
+          style: Theme.of(
+            context,
+          ).textTheme.labelMedium?.copyWith(color: AppColors.textSecondary),
         ),
         const SizedBox(height: 16),
         _FooterLink(
@@ -158,11 +156,7 @@ class _FooterLink extends StatefulWidget {
   final IconData? icon;
   final VoidCallback? onTap;
 
-  const _FooterLink({
-    required this.label,
-    this.icon,
-    this.onTap,
-  });
+  const _FooterLink({required this.label, this.icon, this.onTap});
 
   @override
   State<_FooterLink> createState() => _FooterLinkState();
@@ -185,19 +179,17 @@ class _FooterLinkState extends State<_FooterLink> {
             mainAxisSize: MainAxisSize.min,
             children: [
               if (widget.icon != null) ...[
-                Icon(widget.icon,
-                    size: 16,
-                    color: _hovered
-                        ? AppColors.primary
-                        : AppColors.textMuted),
+                Icon(
+                  widget.icon,
+                  size: 16,
+                  color: _hovered ? AppColors.primary : AppColors.textMuted,
+                ),
                 const SizedBox(width: 8),
               ],
               AnimatedDefaultTextStyle(
                 duration: const Duration(milliseconds: 200),
                 style: TextStyle(
-                  color: _hovered
-                      ? AppColors.primary
-                      : AppColors.textMuted,
+                  color: _hovered ? AppColors.primary : AppColors.textMuted,
                   fontSize: 14,
                 ),
                 child: Text(widget.label),

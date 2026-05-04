@@ -119,7 +119,9 @@ class _ManthanHomePageState extends State<ManthanHomePage> {
                 // Registration
                 Container(
                   key: _sectionKeys['register'],
-                  child: const RegistrationSection(),
+                  child: RegistrationSection(
+                    onExploreEvents: () => _scrollToSection('events'),
+                  ),
                 ),
 
                 // Footer

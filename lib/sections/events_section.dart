@@ -403,25 +403,17 @@ class _EventCard extends StatelessWidget {
     showDialog(
       context: context,
       builder: (ctx) => Dialog(
-        backgroundColor: AppColors.surface,
+        backgroundColor: Colors.transparent,
+        elevation: 0,
         insetPadding: EdgeInsets.symmetric(
           horizontal: isWide ? 60 : 20,
           vertical: 24,
         ),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(24),
-          side: BorderSide(
-            color: _categoryColor.withValues(alpha: 0.2),
-          ),
-        ),
         child: ConstrainedBox(
-          constraints: BoxConstraints(maxWidth: isWide ? 900 : 500),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(24),
-            child: isWide
-                ? _buildWideDialogContent(ctx)
-                : _buildNarrowDialogContent(ctx),
-          ),
+          constraints: BoxConstraints(maxWidth: isWide ? 950 : 500),
+          child: isWide
+              ? _buildWideDialogContent(ctx)
+              : _buildNarrowDialogContent(ctx),
         ),
       ),
     );
@@ -433,44 +425,45 @@ class _EventCard extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          // Poster — takes up ~45% of width
+          // Poster Card
           Expanded(
             flex: 5,
-            child: Stack(
-              fit: StackFit.expand,
-              children: [
-                Image.asset(
+            child: Container(
+              decoration: BoxDecoration(
+                color: AppColors.surface,
+                borderRadius: BorderRadius.circular(24),
+                border: Border.all(
+                  color: _categoryColor.withValues(alpha: 0.2),
+                ),
+              ),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(24),
+                child: Image.asset(
                   event.posterAsset,
                   fit: BoxFit.cover,
                 ),
-                // Subtle gradient overlay on right edge for blending
-                Positioned(
-                  right: 0,
-                  top: 0,
-                  bottom: 0,
-                  width: 60,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        colors: [
-                          Colors.transparent,
-                          AppColors.surface.withValues(alpha: 0.8),
-                        ],
-                        begin: Alignment.centerLeft,
-                        end: Alignment.centerRight,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
+              ),
             ),
           ),
-          // Details — takes up ~55%
+          const SizedBox(width: 24),
+          // Details Card
           Expanded(
             flex: 6,
-            child: SingleChildScrollView(
-              padding: const EdgeInsets.all(36),
-              child: _buildEventDetails(ctx),
+            child: Container(
+              decoration: BoxDecoration(
+                color: AppColors.surface,
+                borderRadius: BorderRadius.circular(24),
+                border: Border.all(
+                  color: _categoryColor.withValues(alpha: 0.2),
+                ),
+              ),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(24),
+                child: SingleChildScrollView(
+                  padding: const EdgeInsets.all(36),
+                  child: _buildEventDetails(ctx),
+                ),
+              ),
             ),
           ),
         ],
@@ -485,17 +478,43 @@ class _EventCard extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          // Poster — large, square
-          AspectRatio(
-            aspectRatio: 0.85,
-            child: Image.asset(
-              event.posterAsset,
-              fit: BoxFit.cover,
+          // Poster Card
+          Container(
+            decoration: BoxDecoration(
+              color: AppColors.surface,
+              borderRadius: BorderRadius.circular(24),
+              border: Border.all(
+                color: _categoryColor.withValues(alpha: 0.2),
+              ),
+            ),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(24),
+              child: AspectRatio(
+                aspectRatio: 0.85,
+                child: Image.asset(
+                  event.posterAsset,
+                  fit: BoxFit.cover,
+                ),
+              ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(24),
-            child: _buildEventDetails(ctx),
+          const SizedBox(height: 20),
+          // Details Card
+          Container(
+            decoration: BoxDecoration(
+              color: AppColors.surface,
+              borderRadius: BorderRadius.circular(24),
+              border: Border.all(
+                color: _categoryColor.withValues(alpha: 0.2),
+              ),
+            ),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(24),
+              child: Padding(
+                padding: const EdgeInsets.all(24),
+                child: _buildEventDetails(ctx),
+              ),
+            ),
           ),
         ],
       ),
