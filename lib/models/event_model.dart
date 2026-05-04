@@ -25,6 +25,7 @@ class EventModel {
   final String? prizePool;
   final String? teamSize;
   final String? venue;
+  final String? duration;
 
   const EventModel({
     required this.name,
@@ -36,6 +37,7 @@ class EventModel {
     this.prizePool,
     this.teamSize,
     this.venue,
+    this.duration,
   });
 }
 

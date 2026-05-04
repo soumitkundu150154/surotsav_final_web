@@ -24,8 +24,7 @@ class _EventsSectionState extends State<EventsSection> {
       events = events.where((e) => e.day == _selectedDay).toList();
     }
     if (_selectedCategory != EventCategory.all) {
-      events =
-          events.where((e) => e.category == _selectedCategory).toList();
+      events = events.where((e) => e.category == _selectedCategory).toList();
     }
     return events;
   }
@@ -62,21 +61,25 @@ class _EventsSectionState extends State<EventsSection> {
               alignment: WrapAlignment.center,
               children: [
                 _DayChip(
-                    label: 'All Days',
-                    isSelected: _selectedDay == 0,
-                    onTap: () => setState(() => _selectedDay = 0)),
+                  label: 'All Days',
+                  isSelected: _selectedDay == 0,
+                  onTap: () => setState(() => _selectedDay = 0),
+                ),
                 _DayChip(
-                    label: 'Day 1',
-                    isSelected: _selectedDay == 1,
-                    onTap: () => setState(() => _selectedDay = 1)),
+                  label: 'Day 1',
+                  isSelected: _selectedDay == 1,
+                  onTap: () => setState(() => _selectedDay = 1),
+                ),
                 _DayChip(
-                    label: 'Day 2',
-                    isSelected: _selectedDay == 2,
-                    onTap: () => setState(() => _selectedDay = 2)),
+                  label: 'Day 2',
+                  isSelected: _selectedDay == 2,
+                  onTap: () => setState(() => _selectedDay = 2),
+                ),
                 _DayChip(
-                    label: 'Day 3',
-                    isSelected: _selectedDay == 3,
-                    onTap: () => setState(() => _selectedDay = 3)),
+                  label: 'Day 3',
+                  isSelected: _selectedDay == 3,
+                  onTap: () => setState(() => _selectedDay = 3),
+                ),
               ],
             ),
           ),
@@ -93,8 +96,7 @@ class _EventsSectionState extends State<EventsSection> {
                 return _CategoryChip(
                   category: cat,
                   isSelected: _selectedCategory == cat,
-                  onTap: () =>
-                      setState(() => _selectedCategory = cat),
+                  onTap: () => setState(() => _selectedCategory = cat),
                 );
               }).toList(),
             ),
@@ -110,8 +112,11 @@ class _EventsSectionState extends State<EventsSection> {
                     padding: const EdgeInsets.all(60),
                     child: Column(
                       children: [
-                        Icon(Icons.search_off,
-                            size: 48, color: AppColors.textMuted),
+                        Icon(
+                          Icons.search_off,
+                          size: 48,
+                          color: AppColors.textMuted,
+                        ),
                         const SizedBox(height: 16),
                         Text(
                           'No events match this filter',
@@ -129,8 +134,8 @@ class _EventsSectionState extends State<EventsSection> {
                       final cardWidth = isMobile
                           ? MediaQuery.of(context).size.width - 48
                           : isTablet
-                              ? (MediaQuery.of(context).size.width - 180) / 2
-                              : (MediaQuery.of(context).size.width - 300) / 4;
+                          ? (MediaQuery.of(context).size.width - 180) / 2
+                          : (MediaQuery.of(context).size.width - 300) / 4;
                       return _EventCard(
                         event: event,
                         width: cardWidth.clamp(250, 350).toDouble(),
@@ -172,16 +177,13 @@ class _DayChipState extends State<_DayChip> {
         onTap: widget.onTap,
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 200),
-          padding:
-              const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           decoration: BoxDecoration(
-            gradient: widget.isSelected
-                ? AppColors.primaryGradient
-                : null,
+            gradient: widget.isSelected ? AppColors.primaryGradient : null,
             color: !widget.isSelected
                 ? _hovered
-                    ? AppColors.surfaceLight
-                    : AppColors.surface
+                      ? AppColors.surfaceLight
+                      : AppColors.surface
                 : null,
             borderRadius: BorderRadius.circular(30),
             border: Border.all(
@@ -193,11 +195,8 @@ class _DayChipState extends State<_DayChip> {
           child: Text(
             widget.label,
             style: TextStyle(
-              color: widget.isSelected
-                  ? Colors.white
-                  : AppColors.textSecondary,
-              fontWeight:
-                  widget.isSelected ? FontWeight.w600 : FontWeight.w500,
+              color: widget.isSelected ? Colors.white : AppColors.textSecondary,
+              fontWeight: widget.isSelected ? FontWeight.w600 : FontWeight.w500,
               fontSize: 14,
             ),
           ),
@@ -237,8 +236,7 @@ class _CategoryChip extends StatelessWidget {
         cursor: SystemMouseCursors.click,
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 200),
-          padding:
-              const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
           decoration: BoxDecoration(
             color: isSelected
                 ? _color.withValues(alpha: 0.2)
@@ -301,8 +299,9 @@ class _EventCard extends StatelessWidget {
           children: [
             // Poster
             ClipRRect(
-              borderRadius:
-                  const BorderRadius.vertical(top: Radius.circular(20)),
+              borderRadius: const BorderRadius.vertical(
+                top: Radius.circular(20),
+              ),
               child: AspectRatio(
                 aspectRatio: 1.0,
                 child: Image.asset(
@@ -310,8 +309,7 @@ class _EventCard extends StatelessWidget {
                   fit: BoxFit.cover,
                   errorBuilder: (context, error, stackTrace) => Container(
                     color: AppColors.surfaceLight,
-                    child: Icon(event.icon,
-                        size: 48, color: _categoryColor),
+                    child: Icon(event.icon, size: 48, color: _categoryColor),
                   ),
                 ),
               ),
@@ -326,7 +324,9 @@ class _EventCard extends StatelessWidget {
                     children: [
                       Container(
                         padding: const EdgeInsets.symmetric(
-                            horizontal: 10, vertical: 4),
+                          horizontal: 10,
+                          vertical: 4,
+                        ),
                         decoration: BoxDecoration(
                           color: _categoryColor.withValues(alpha: 0.15),
                           borderRadius: BorderRadius.circular(8),
@@ -356,8 +356,7 @@ class _EventCard extends StatelessWidget {
                   // Title
                   Text(
                     event.name,
-                    style:
-                        Theme.of(context).textTheme.titleLarge,
+                    style: Theme.of(context).textTheme.titleLarge,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
@@ -365,8 +364,7 @@ class _EventCard extends StatelessWidget {
                   // Description
                   Text(
                     event.description,
-                    style:
-                        Theme.of(context).textTheme.bodySmall,
+                    style: Theme.of(context).textTheme.bodySmall,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                   ),
@@ -374,12 +372,34 @@ class _EventCard extends StatelessWidget {
                     const SizedBox(height: 12),
                     Row(
                       children: [
-                        const Icon(Icons.group,
-                            size: 14,
-                            color: AppColors.textMuted),
+                        const Icon(
+                          Icons.group,
+                          size: 14,
+                          color: AppColors.textMuted,
+                        ),
                         const SizedBox(width: 6),
                         Text(
                           event.teamSize!,
+                          style: const TextStyle(
+                            color: AppColors.textMuted,
+                            fontSize: 12,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                  if (event.duration != null) ...[
+                    const SizedBox(height: 12),
+                    Row(
+                      children: [
+                        const Icon(
+                          Icons.timer,
+                          size: 14,
+                          color: AppColors.textMuted,
+                        ),
+                        const SizedBox(width: 6),
+                        Text(
+                          event.duration!,
                           style: const TextStyle(
                             color: AppColors.textMuted,
                             fontSize: 12,
@@ -438,10 +458,7 @@ class _EventCard extends StatelessWidget {
               ),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(24),
-                child: Image.asset(
-                  event.posterAsset,
-                  fit: BoxFit.cover,
-                ),
+                child: Image.asset(event.posterAsset, fit: BoxFit.cover),
               ),
             ),
           ),
@@ -483,18 +500,13 @@ class _EventCard extends StatelessWidget {
             decoration: BoxDecoration(
               color: AppColors.surface,
               borderRadius: BorderRadius.circular(24),
-              border: Border.all(
-                color: _categoryColor.withValues(alpha: 0.2),
-              ),
+              border: Border.all(color: _categoryColor.withValues(alpha: 0.2)),
             ),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(24),
               child: AspectRatio(
                 aspectRatio: 0.85,
-                child: Image.asset(
-                  event.posterAsset,
-                  fit: BoxFit.cover,
-                ),
+                child: Image.asset(event.posterAsset, fit: BoxFit.cover),
               ),
             ),
           ),
@@ -504,9 +516,7 @@ class _EventCard extends StatelessWidget {
             decoration: BoxDecoration(
               color: AppColors.surface,
               borderRadius: BorderRadius.circular(24),
-              border: Border.all(
-                color: _categoryColor.withValues(alpha: 0.2),
-              ),
+              border: Border.all(color: _categoryColor.withValues(alpha: 0.2)),
             ),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(24),
@@ -532,8 +542,7 @@ class _EventCard extends StatelessWidget {
           runSpacing: 8,
           children: [
             Container(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
               decoration: BoxDecoration(
                 color: _categoryColor.withValues(alpha: 0.15),
                 borderRadius: BorderRadius.circular(8),
@@ -541,8 +550,7 @@ class _EventCard extends StatelessWidget {
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Icon(event.category.icon,
-                      size: 13, color: _categoryColor),
+                  Icon(event.category.icon, size: 13, color: _categoryColor),
                   const SizedBox(width: 6),
                   Text(
                     event.category.label,
@@ -556,8 +564,7 @@ class _EventCard extends StatelessWidget {
               ),
             ),
             Container(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
               decoration: BoxDecoration(
                 color: AppColors.primary.withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(8),
@@ -577,10 +584,7 @@ class _EventCard extends StatelessWidget {
         const SizedBox(height: 24),
 
         // Title
-        Text(
-          event.name,
-          style: Theme.of(ctx).textTheme.headlineMedium,
-        ),
+        Text(event.name, style: Theme.of(ctx).textTheme.headlineMedium),
         const SizedBox(height: 16),
 
         // Divider accent line
@@ -597,10 +601,7 @@ class _EventCard extends StatelessWidget {
         const SizedBox(height: 20),
 
         // Description
-        Text(
-          event.description,
-          style: Theme.of(ctx).textTheme.bodyLarge,
-        ),
+        Text(event.description, style: Theme.of(ctx).textTheme.bodyLarge),
 
         // Team size
         if (event.teamSize != null) ...[
@@ -639,6 +640,106 @@ class _EventCard extends StatelessWidget {
                     const SizedBox(height: 2),
                     Text(
                       event.teamSize!,
+                      style: TextStyle(
+                        color: AppColors.textPrimary,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ],
+
+        // Duration
+        if (event.duration != null) ...[
+          const SizedBox(height: 24),
+          Container(
+            padding: const EdgeInsets.all(14),
+            decoration: BoxDecoration(
+              color: AppColors.surfaceLight.withValues(alpha: 0.5),
+              borderRadius: BorderRadius.circular(12),
+              border: Border.all(
+                color: AppColors.textMuted.withValues(alpha: 0.1),
+              ),
+            ),
+            child: Row(
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    color: _categoryColor.withValues(alpha: 0.1),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Icon(Icons.group, size: 18, color: _categoryColor),
+                ),
+                const SizedBox(width: 12),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Duration',
+                      style: TextStyle(
+                        color: AppColors.textMuted,
+                        fontSize: 11,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    const SizedBox(height: 2),
+                    Text(
+                      event.duration!,
+                      style: TextStyle(
+                        color: AppColors.textPrimary,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ],
+
+        // Prizes
+        if (event.prizePool != null) ...[
+          const SizedBox(height: 24),
+          Container(
+            padding: const EdgeInsets.all(14),
+            decoration: BoxDecoration(
+              color: AppColors.surfaceLight.withValues(alpha: 0.5),
+              borderRadius: BorderRadius.circular(12),
+              border: Border.all(
+                color: AppColors.textMuted.withValues(alpha: 0.1),
+              ),
+            ),
+            child: Row(
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    color: _categoryColor.withValues(alpha: 0.1),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Icon(Icons.group, size: 18, color: _categoryColor),
+                ),
+                const SizedBox(width: 12),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Prize Pool',
+                      style: TextStyle(
+                        color: AppColors.textMuted,
+                        fontSize: 11,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    const SizedBox(height: 2),
+                    Text(
+                      event.prizePool!,
                       style: TextStyle(
                         color: AppColors.textPrimary,
                         fontSize: 14,
