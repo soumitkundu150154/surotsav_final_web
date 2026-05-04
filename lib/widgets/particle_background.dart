@@ -6,8 +6,9 @@ import '../theme/app_colors.dart';
 /// Particles float, connect with lines, and respond to mouse/touch.
 class ParticleBackground extends StatefulWidget {
   final int particleCount;
+  final ValueNotifier<Offset?>? mousePositionNotifier;
 
-  const ParticleBackground({super.key, this.particleCount = 70});
+  const ParticleBackground({super.key, this.particleCount = 70, this.mousePositionNotifier});
 
   @override
   State<ParticleBackground> createState() => _ParticleBackgroundState();
@@ -51,29 +52,35 @@ class _ParticleBackgroundState extends State<ParticleBackground>
         final size = Size(constraints.maxWidth, constraints.maxHeight);
         _initParticles(size);
 
-        return MouseRegion(
-          onHover: (event) {
-            _mousePosition = event.localPosition;
-          },
-          onExit: (_) {
-            _mousePosition = null;
-          },
-          child: RepaintBoundary(
-            child: AnimatedBuilder(
-              animation: _controller,
-              builder: (context, _) {
-                return CustomPaint(
-                  size: size,
-                  painter: _ParticlePainter(
-                    particles: _particles,
-                    mousePosition: _mousePosition,
-                    bounds: size,
-                  ),
-                );
-              },
-            ),
+        Widget content = RepaintBoundary(
+          child: AnimatedBuilder(
+            animation: Listenable.merge([_controller, if (widget.mousePositionNotifier != null) widget.mousePositionNotifier!]),
+            builder: (context, _) {
+              return CustomPaint(
+                size: size,
+                painter: _ParticlePainter(
+                  particles: _particles,
+                  mousePosition: widget.mousePositionNotifier?.value ?? _mousePosition,
+                  bounds: size,
+                ),
+              );
+            },
           ),
         );
+
+        if (widget.mousePositionNotifier == null) {
+          content = MouseRegion(
+            onHover: (event) {
+              _mousePosition = event.localPosition;
+            },
+            onExit: (_) {
+              _mousePosition = null;
+            },
+            child: content,
+          );
+        }
+
+        return content;
       },
     );
   }
@@ -119,16 +126,19 @@ class _Particle {
     if (y < 0) y = bounds.height;
     if (y > bounds.height) y = 0;
 
-    // Mouse interaction — gentle repulsion
+    // Mouse interaction — strong repulsion
     if (mouse != null) {
       final dx = x - mouse.dx;
       final dy = y - mouse.dy;
       final dist = sqrt(dx * dx + dy * dy);
-      if (dist < 150) {
-        final force = (150 - dist) / 150 * 0.02;
-        vx += dx / dist * force;
-        vy += dy / dist * force;
-        opacity = min(1.0, baseOpacity + (150 - dist) / 150 * 0.4);
+      // Increased repulsion radius
+      if (dist < 250) {
+        // Stronger force to make particles scatter quickly
+        final force = (250 - dist) / 250 * 0.8;
+        vx += (dx / dist) * force;
+        vy += (dy / dist) * force;
+        // Make particles light up brightly when repulsed
+        opacity = min(1.0, baseOpacity + (250 - dist) / 250 * 0.8);
       } else {
         opacity += (baseOpacity - opacity) * 0.05;
       }
@@ -197,12 +207,25 @@ class _ParticlePainter extends CustomPainter {
       }
     }
 
-    // Draw glow around mouse
+    // Draw glow around mouse (this will act as the cursor glow)
     if (mousePosition != null) {
-      final mousePaint = Paint()
-        ..color = AppColors.primary.withValues(alpha: 0.08)
+      // Large diffuse background glow
+      final outerGlowPaint = Paint()
+        ..color = AppColors.primary.withValues(alpha: 0.15)
+        ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 80);
+      canvas.drawCircle(mousePosition!, 150, outerGlowPaint);
+
+      // Medium intense glow
+      final innerGlowPaint = Paint()
+        ..color = AppColors.accentPink.withValues(alpha: 0.25)
         ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 40);
-      canvas.drawCircle(mousePosition!, 80, mousePaint);
+      canvas.drawCircle(mousePosition!, 80, innerGlowPaint);
+
+      // Core cursor glow
+      final corePaint = Paint()
+        ..color = Colors.white.withValues(alpha: 0.8)
+        ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 8);
+      canvas.drawCircle(mousePosition!, 12, corePaint);
     }
   }
 

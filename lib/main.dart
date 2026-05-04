@@ -37,6 +37,7 @@ class ManthanHomePage extends StatefulWidget {
 
 class _ManthanHomePageState extends State<ManthanHomePage> {
   final _scrollController = ScrollController();
+  final ValueNotifier<Offset?> _mousePosition = ValueNotifier<Offset?>(null);
 
   // Section keys for scroll navigation
   final _sectionKeys = <String, GlobalKey>{
@@ -62,21 +63,29 @@ class _ManthanHomePageState extends State<ManthanHomePage> {
   @override
   void dispose() {
     _scrollController.dispose();
+    _mousePosition.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: [
-          // Particle background (fixed)
-          const Positioned.fill(
-            child: ParticleBackground(),
-          ),
+      body: MouseRegion(
+        onHover: (event) {
+          _mousePosition.value = event.position;
+        },
+        onExit: (_) {
+          _mousePosition.value = null;
+        },
+        child: Stack(
+          children: [
+            // Particle background (fixed)
+            Positioned.fill(
+              child: ParticleBackground(mousePositionNotifier: _mousePosition),
+            ),
 
-          // Scrollable content
-          SingleChildScrollView(
+            // Scrollable content
+            SingleChildScrollView(
             controller: _scrollController,
             physics: const ClampingScrollPhysics(),
             child: Column(
@@ -146,6 +155,7 @@ class _ManthanHomePageState extends State<ManthanHomePage> {
           ),
         ],
       ),
+    ),
     );
   }
 }
