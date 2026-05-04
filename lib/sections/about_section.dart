@@ -36,7 +36,7 @@ class AboutSection extends StatelessWidget {
             child: ConstrainedBox(
               constraints: const BoxConstraints(maxWidth: 900),
               child: Text(
-                'Spanning 3 action-packed days, Manthan brings together the brightest minds for 17+ events across tech, sports, gaming, creative, and knowledge domains. Whether you\'re a robotics enthusiast, a gaming champion, or a creative storyteller — there\'s something for everyone.',
+                'Spanning 3 action-packed days, Manthan brings together the brightest minds for 15+ events across tech, sports, gaming, creative, and knowledge domains. Whether you\'re a robotics enthusiast, a gaming champion, or a creative storyteller — there\'s something for everyone.',
                 style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                       height: 1.8,
                     ),
@@ -54,7 +54,7 @@ class AboutSection extends StatelessWidget {
               runSpacing: 30,
               alignment: WrapAlignment.center,
               children: const [
-                AnimatedCounter(value: 17, suffix: '+', label: 'Events'),
+                AnimatedCounter(value: 15, suffix: '+', label: 'Events'),
                 AnimatedCounter(value: 3, suffix: '', label: 'Days'),
                 AnimatedCounter(value: 500, suffix: '+', label: 'Participants'),
                 AnimatedCounter(value: 20, suffix: '+', label: 'Colleges'),
