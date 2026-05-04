@@ -180,7 +180,7 @@ class _FeaturedEventSectionState extends State<FeaturedEventSection> {
                     children: [
                       _StatCard(
                         icon: Icons.emoji_events,
-                        value: '17+',
+                        value: '15+',
                         label: 'Events',
                         color: AppColors.accentWarm,
                       ),
