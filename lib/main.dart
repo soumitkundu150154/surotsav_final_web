@@ -9,6 +9,8 @@ import 'sections/featured_event_section.dart';
 import 'sections/team_section.dart';
 import 'sections/registration_section.dart';
 import 'sections/footer_section.dart';
+import 'sections/surotsav_intro_section.dart';
+import 'sections/surotsav_events_intro_section.dart';
 
 void main() {
   runApp(const ManthanApp());
@@ -41,12 +43,14 @@ class _ManthanHomePageState extends State<ManthanHomePage> {
 
   // Section keys for scroll navigation
   final _sectionKeys = <String, GlobalKey>{
+    'intro': GlobalKey(),
     'hero': GlobalKey(),
     'about': GlobalKey(),
     'events': GlobalKey(),
     'featured': GlobalKey(),
     'team': GlobalKey(),
     'register': GlobalKey(),
+    'surotsav_events': GlobalKey(),
   };
 
   void _scrollToSection(String section) {
@@ -90,6 +94,14 @@ class _ManthanHomePageState extends State<ManthanHomePage> {
             physics: const ClampingScrollPhysics(),
             child: Column(
               children: [
+                // Surotsav Intro
+                Container(
+                  key: _sectionKeys['intro'],
+                  child: SurotsavIntroSection(
+                    onExploreTap: () => _scrollToSection('hero'),
+                  ),
+                ),
+
                 // Hero
                 Container(
                   key: _sectionKeys['hero'],
@@ -131,6 +143,12 @@ class _ManthanHomePageState extends State<ManthanHomePage> {
                   child: RegistrationSection(
                     onExploreEvents: () => _scrollToSection('events'),
                   ),
+                ),
+
+                // Surotsav Events Intro
+                Container(
+                  key: _sectionKeys['surotsav_events'],
+                  child: const SurotsavEventsIntroSection(),
                 ),
 
                 // Footer

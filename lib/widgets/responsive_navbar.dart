@@ -104,7 +104,7 @@ class _ResponsiveNavbarState extends State<ResponsiveNavbar> {
             children: [
               // Logo
               GestureDetector(
-                onTap: () => _scrollTo('hero'),
+                onTap: () => _scrollTo('intro'),
                 child: MouseRegion(
                   cursor: SystemMouseCursors.click,
                   child: Row(
