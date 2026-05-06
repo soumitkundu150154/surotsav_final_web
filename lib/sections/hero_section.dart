@@ -33,10 +33,7 @@ class _HeroSectionState extends State<HeroSection>
       vsync: this,
       duration: const Duration(milliseconds: 1200),
     );
-    _fadeAnim = CurvedAnimation(
-      parent: _fadeController,
-      curve: Curves.easeOut,
-    );
+    _fadeAnim = CurvedAnimation(parent: _fadeController, curve: Curves.easeOut);
     _slideAnim = Tween<double>(begin: 40, end: 0).animate(
       CurvedAnimation(parent: _fadeController, curve: Curves.easeOutCubic),
     );
@@ -116,7 +113,7 @@ class _HeroSectionState extends State<HeroSection>
                           ScrollReveal(
                             delay: const Duration(milliseconds: 200),
                             child: Image.asset(
-                              'assets/logo/logo_white.png',
+                              'assets/logo/image.png',
                               height: isMobile ? 100 : 140,
                               filterQuality: FilterQuality.high,
                             ),
@@ -126,26 +123,23 @@ class _HeroSectionState extends State<HeroSection>
                           // Headline
                           ShaderMask(
                             shaderCallback: (bounds) =>
-                                AppColors.primaryGradient
-                                    .createShader(bounds),
+                                AppColors.primaryGradient.createShader(bounds),
                             child: Text(
                               'MANTHAN 2026',
                               style: isMobile
-                                  ? Theme.of(context)
-                                      .textTheme
-                                      .displaySmall
-                                      ?.copyWith(
-                                        color: Colors.white,
-                                        letterSpacing: 4,
-                                      )
-                                  : Theme.of(context)
-                                      .textTheme
-                                      .displayLarge
-                                      ?.copyWith(
-                                        color: Colors.white,
-                                        letterSpacing: 6,
-                                        fontSize: isTablet ? 56 : 72,
-                                      ),
+                                  ? Theme.of(
+                                      context,
+                                    ).textTheme.displaySmall?.copyWith(
+                                      color: Colors.white,
+                                      letterSpacing: 4,
+                                    )
+                                  : Theme.of(
+                                      context,
+                                    ).textTheme.displayLarge?.copyWith(
+                                      color: Colors.white,
+                                      letterSpacing: 6,
+                                      fontSize: isTablet ? 56 : 72,
+                                    ),
                               textAlign: TextAlign.center,
                             ),
                           ),
@@ -154,9 +148,7 @@ class _HeroSectionState extends State<HeroSection>
                           // Tagline
                           Text(
                             'Where Innovation Meets Execution',
-                            style: Theme.of(context)
-                                .textTheme
-                                .headlineSmall
+                            style: Theme.of(context).textTheme.headlineSmall
                                 ?.copyWith(
                                   color: AppColors.textSecondary,
                                   fontWeight: FontWeight.w400,
