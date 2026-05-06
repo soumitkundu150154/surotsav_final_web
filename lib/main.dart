@@ -90,90 +90,90 @@ class _ManthanHomePageState extends State<ManthanHomePage> {
 
             // Scrollable content
             SingleChildScrollView(
-            controller: _scrollController,
-            physics: const ClampingScrollPhysics(),
-            child: Column(
-              children: [
-                // Surotsav Intro
-                Container(
-                  key: _sectionKeys['intro'],
-                  child: SurotsavIntroSection(
-                    onExploreTap: () => _scrollToSection('hero'),
+              controller: _scrollController,
+              physics: const ClampingScrollPhysics(),
+              child: Column(
+                children: [
+                  // Surotsav Intro
+                  Container(
+                    key: _sectionKeys['intro'],
+                    child: SurotsavIntroSection(
+                      onExploreTap: () => _scrollToSection('hero'),
+                    ),
                   ),
-                ),
 
-                // Hero
-                Container(
-                  key: _sectionKeys['hero'],
-                  child: HeroSection(
+                  // Hero
+                  Container(
+                    key: _sectionKeys['hero'],
+                    child: HeroSection(
+                      onRegisterTap: () => _scrollToSection('register'),
+                      onExploreTap: () => _scrollToSection('events'),
+                    ),
+                  ),
+
+                  // About
+                  Container(
+                    key: _sectionKeys['about'],
+                    child: const AboutSection(),
+                  ),
+
+                  // Events
+                  Container(
+                    key: _sectionKeys['events'],
+                    child: const EventsSection(),
+                  ),
+
+                  // Featured
+                  Container(
+                    key: _sectionKeys['featured'],
+                    child: FeaturedEventSection(
+                      onRegisterTap: () => _scrollToSection('register'),
+                    ),
+                  ),
+
+                  // Team
+                  Container(
+                    key: _sectionKeys['team'],
+                    child: const TeamSection(),
+                  ),
+
+                  // Registration
+                  Container(
+                    key: _sectionKeys['register'],
+                    child: RegistrationSection(
+                      onExploreEvents: () => _scrollToSection('events'),
+                    ),
+                  ),
+
+                  // Surotsav Events Intro
+                  Container(
+                    key: _sectionKeys['surotsav_events'],
+                    child: const SurotsavEventsIntroSection(),
+                  ),
+
+                  // Footer
+                  FooterSection(
+                    onAboutTap: () => _scrollToSection('about'),
+                    onEventsTap: () => _scrollToSection('events'),
                     onRegisterTap: () => _scrollToSection('register'),
-                    onExploreTap: () => _scrollToSection('events'),
                   ),
-                ),
-
-                // About
-                Container(
-                  key: _sectionKeys['about'],
-                  child: const AboutSection(),
-                ),
-
-                // Events
-                Container(
-                  key: _sectionKeys['events'],
-                  child: const EventsSection(),
-                ),
-
-                // Featured
-                Container(
-                  key: _sectionKeys['featured'],
-                  child: FeaturedEventSection(
-                    onRegisterTap: () => _scrollToSection('register'),
-                  ),
-                ),
-
-                // Team
-                Container(
-                  key: _sectionKeys['team'],
-                  child: const TeamSection(),
-                ),
-
-                // Registration
-                Container(
-                  key: _sectionKeys['register'],
-                  child: RegistrationSection(
-                    onExploreEvents: () => _scrollToSection('events'),
-                  ),
-                ),
-
-                // Surotsav Events Intro
-                Container(
-                  key: _sectionKeys['surotsav_events'],
-                  child: const SurotsavEventsIntroSection(),
-                ),
-
-                // Footer
-                FooterSection(
-                  onAboutTap: () => _scrollToSection('about'),
-                  onEventsTap: () => _scrollToSection('events'),
-                  onRegisterTap: () => _scrollToSection('register'),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
 
-          // Navbar overlay
-          Positioned(
-            top: 0,
-            left: 0,
-            right: 0,
-            child: ResponsiveNavbar(
-              scrollController: _scrollController,
-              sectionKeys: _sectionKeys,
+            // Navbar overlay
+            Positioned(
+              top: 0,
+              left: 0,
+              right: 0,
+              child: ResponsiveNavbar(
+                scrollController: _scrollController,
+                sectionKeys: _sectionKeys,
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
-    ),
     );
   }
 }
