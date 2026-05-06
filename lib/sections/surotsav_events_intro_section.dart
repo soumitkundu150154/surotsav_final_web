@@ -115,31 +115,31 @@ class SurotsavEventsIntroSection extends StatelessWidget {
     final events = [
       {
         'title': 'MOBMANIA',
-        'subtitle': 'The E-Sports Arena',
-        'icon': Icons.sports_esports_rounded,
+        'subtitle': 'The Dance Arena',
+        'icon': Icons.music_note,
         'color': const Color(0xFFFF3366),
-        'desc': 'Battle it out in the ultimate gaming showdown.',
+        'desc': 'The Spark That Sets Everything in Motion',
       },
       {
         'title': 'MANTHAN',
         'subtitle': 'The Tech Fest',
         'icon': Icons.memory_rounded,
         'color': const Color(0xFF00F0FF),
-        'desc': 'Innovate, code, and conquer the technical realm.',
+        'desc': 'Ignite Your Mind. Fuel Your Future.',
       },
       {
         'title': 'UDDAN',
-        'subtitle': 'The Cultural Fest',
+        'subtitle': 'The Freshers',
         'icon': Icons.palette_rounded,
         'color': const Color(0xFFFFD700),
-        'desc': 'A vibrant celebration of arts, music, and dance.',
+        'desc': 'Welcoming fresh faces with music, memories, fun, and the spirit of a new beginning.',
       },
       {
         'title': 'TARANG',
-        'subtitle': 'The Sports Fest',
-        'icon': Icons.sports_basketball_rounded,
+        'subtitle': 'The Cultural Fest',
+        'icon': Icons.music_note,
         'color': const Color(0xFF00FF66),
-        'desc': 'Unleash your physical prowess and team spirit.',
+        'desc': 'Celebration of cultural, music and unity.\n\nLive music , DJ Nights, Cultural Performances, Closing Ceremony',
       },
     ];
 
