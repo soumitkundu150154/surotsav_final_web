@@ -101,7 +101,7 @@ class _SurotsavIntroSectionState extends State<SurotsavIntroSection>
                       constraints: const BoxConstraints(maxWidth: 800),
                       padding: const EdgeInsets.symmetric(horizontal: 24),
                       child: Text(
-                        'A grand cinematic convergence of tech, arts, sports, and culture. Experience the unparalleled spectacle of Surotsav 2026. Prepare for something extraordinary...',
+                        "Where technology meets creativity, sports meet passion, and talent meets opportunity. \n\nWelcome to Surotsav 2026 — the grand fest of Dr. Sudhir Chandra Sur Institute of Technology & Sports Complex, crafted to inspire, connect, and celebrate brilliance.",
                         style: GoogleFonts.inter(
                           fontSize: size.width > 800 ? 20 : 16,
                           fontWeight: FontWeight.w300,
